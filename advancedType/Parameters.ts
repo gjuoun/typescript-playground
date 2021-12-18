@@ -13,7 +13,7 @@ type FirstArgType = MyFuncArgType[0]
 
 
 // chunk function 
-const chunk = <T>(arr: T[], size: number): T[][] => {
+const chunk = <T>(arr: T[], size: number): T[][] => { // get T type automatically from the argument
   return [arr]
 }
 
@@ -22,3 +22,12 @@ const result = chunk([1, 2, 3], 3)
 const result1 = chunk(['1', '2'], 3)
 
 const list = [1,2,3] as const
+
+
+type MessageOf<T> = T extends { message: unknown } ? T["message"] : never;
+
+interface Email {
+  message: string;
+}
+
+type EmailMessageContents = MessageOf<Email>;

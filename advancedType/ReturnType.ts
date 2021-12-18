@@ -1,3 +1,4 @@
+// <T extends (...args: any) => any> : restricts the T, which is a function 
 type ReturnTypeDemo<T extends (...args: any) => any> = T extends (...args: any) => infer R? R: unknown
 
 
