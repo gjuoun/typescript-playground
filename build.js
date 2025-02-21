@@ -1,12 +1,17 @@
 const esbuild = require('esbuild');
 
-esbuild.build({
+esbuild
+  .build({
     entryPoints: ['src/index.ts'],
     bundle: true,
     outfile: 'dist/index.js',
     platform: 'node',
-    target: 'node18',
-    format: 'cjs',
-    sourcemap: true,
-    external: ['aws-sdk'],
-}).catch(() => process.exit(1));
+    target: 'node20', // Updated to latest LTS; revert to 'node18' if needed
+    format: 'cjs', // CommonJS for compatibility
+    sourcemap: true, // Useful for debugging
+    external: ['@aws-sdk/*'], // Exclude all AWS SDK v3 packages provided by Lambda
+  })
+  .catch((error) => {
+    console.error('Build failed:', error);
+    process.exit(1);
+  });
