@@ -6,6 +6,9 @@ export const handler = async (
 	try {
 		const response = {
 			statusCode: 200,
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify({
 				message: "Hello from TypeScript Lambda!",
 				input: event,
@@ -16,6 +19,9 @@ export const handler = async (
 		console.log(err);
 		return {
 			statusCode: 500,
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify({
 				message: "Internal server error",
 			}),
